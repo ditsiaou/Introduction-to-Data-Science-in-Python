@@ -1,0 +1,73 @@
+1. Consider the two DataFrames shown below, both of which have Name as the index. 
+Which of the following expressions can be used to get the data of all students (from student_df) including their roles as staff, where nan denotes no role?
+
+pd.merge(student_df, staff_df, how='left', left_index=True, right_index=True)
+
+2. Consider a DataFrame named df with columns named P2010, P2011, P2012, P2013, 2014 and P2015 containing float values. 
+We want to use the apply method to get a new DataFrame named result_df with a new column AVG. 
+The AVG column should average the float values across P2010 to P2015. The apply method should also remove the 6 original columns (P2010 to P2015). 
+For that, what should be the value of x and y in the given code?
+
+frames = ['P2010', 'P2011', 'P2012', 'P2013','P2014', 'P2015']
+df['AVG'] = df[frames].apply(lambda z: np.mean(z), axis=x)
+result_df = df.drop(frames,axis=y)
+
+x = 1
+y = 1
+
+3.  Consider the Dataframe df below, instantiated with a list of grades, ordered from best grade to worst. 
+Which of the following options can be used to substitute X in the code given below, if we want to get all the grades between 'A' and 'B' where 'A' is better than 'B'?
+
+import pandas as pd
+df = pd.DataFrame(['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D'], index=['excellent', 'excellent', 'excellent', 'good', 'good', 'good', 'ok', 'ok', 'ok', 'poor', 'poor'], columns = ['Grades'])
+my_categories= X
+grades = df['Grades'].astype(my_categories)
+result = grades[(grades>'B') & (grades<'A')]
+
+my_categories = pd.CategoricalDtype(categories=['D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+'], ordered=True)
+
+4. Consider the DataFrame df shown in the image below. Which of the following can return the head of the pivot table as shown in the image below df?
+
+df.pivot_table(values='score', index='country', columns='Rank_Level', aggfunc=[np.median], margins=True)
+
+
+5. Assume that the date '11/29/2019' in MM/DD/YYYY format is the 4th day of the week, what will be the result of the following?
+
+import pandas as pd
+(pd.Timestamp('11/29/2019') + pd.offsets.MonthEnd()).weekday()
+
+
+5
+
+6. Consider a DataFrame df. We want to create groups based on the column group_key in the DataFrame and fill the nan values with group means using:
+
+filling_mean = lambda g: g.fillna(g.mean())
+
+df.groupby(group_key).apply(filling_mean)
+
+7. Consider the DataFrames above, both of which have a standard integer based index. Which of the following can be used to get the data of all students
+(from student_df) and merge it with their staff roles where nan denotes no role?
+
+result_df = pd.merge(staff_df, student_df, how='right', on=['First Name', 'Last Name'])
+
+8. Consider a DataFrame df with columns name, reviews_per_month, and review_scores_value. This DataFrame also consists of several missing values. 
+Which of the following can be used to:
+
+1. calculate the number of entries in the name column, and
+
+2. calculate the mean and standard deviation of the reviews_per_month, grouping by different review_scores_value?
+
+df.groupby('review_scores_value').agg({'name': len, 'reviews_per_month': (np.nanmean, np.nanstd)})
+
+9. What will be the result of the following code?:
+
+import pandas as pd
+pd.Period('01/12/2019', 'M') + 5
+
+Period('2019-06', 'M')
+
+10. Which of the following is not a valid expression to create a Pandas GroupBy object from the DataFrame shown below?
+
+df.groupby('vegetable')
+
+
